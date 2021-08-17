@@ -1,0 +1,1442 @@
+{
+  "name": "photo-shop-action",
+  "type": "dialog",
+  "status": "Available",
+  "created": "2021-08-12T14:35:21.722Z",
+  "updated": "2021-08-16T18:38:53.079Z",
+  "language": "en",
+  "skill_id": "a7277b82-2bd6-49ef-973a-fb150b593ec2",
+  "workspace": {
+    "actions": [
+      {
+        "steps": [
+          {
+            "step": "step_104",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": ""
+                          },
+                          {
+                            "variable": "step_871"
+                          },
+                          {
+                            "scalar": " will be ready in 30 minutes."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_104",
+            "condition": {
+              "exists": {
+                "variable": "step_871"
+              }
+            },
+            "next_step": "step_297"
+          },
+          {
+            "step": "step_221",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Changed mind? I can help checking order status"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_221",
+            "condition": {
+              "exists": {
+                "skill_variable": "photo_size"
+              }
+            },
+            "next_step": "step_274"
+          },
+          {
+            "step": "step_274",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I can help checking your order status"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_274",
+            "condition": {
+              "not": {
+                "exists": {
+                  "skill_variable": "photo_size"
+                }
+              }
+            },
+            "next_step": "step_871"
+          },
+          {
+            "step": "step_297",
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "expression": ""
+                  },
+                  "skill_variable": "photo_size"
+                },
+                {
+                  "value": {
+                    "expression": ""
+                  },
+                  "skill_variable": "photo_finish"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_297",
+            "next_step": "step_839"
+          },
+          {
+            "step": "step_839",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Need your order number to check order status"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_871"
+                }
+              ]
+            },
+            "variable": "step_839",
+            "condition": {
+              "not": {
+                "exists": {
+                  "variable": "step_871"
+                }
+              }
+            }
+          },
+          {
+            "step": "step_871",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "What is your order number?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Enter a number."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm afraid I don't understand. Let me see if I can help another way."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "end_action"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-number",
+              "free_text": false,
+              "max_tries": 3,
+              "only_populate_when_prompted": false
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_871",
+            "next_step": "step_104"
+          }
+        ],
+        "title": "photo status",
+        "action": "action_20212",
+        "handlers": [],
+        "condition": {
+          "intent": "action_20212_intent_4874"
+        },
+        "variables": [
+          {
+            "title": "{variable} will be ready in 30 minutes.",
+            "variable": "step_104",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_145_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_188_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Changed mind? I can help checking order status",
+            "variable": "step_221",
+            "data_type": "any"
+          },
+          {
+            "title": "I can help checking your order status",
+            "variable": "step_274",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "variable": "step_297",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_323_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Need your order number to check order status",
+            "variable": "step_839",
+            "data_type": "any"
+          },
+          {
+            "title": "What is your order number?",
+            "variable": "step_871",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_21633",
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_145",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Switch to Order Status action ..."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "action_20212",
+                "parameters": null,
+                "result_variable": "step_145_result_1"
+              }
+            },
+            "variable": "step_145",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_733"
+                },
+                {
+                  "value": "Switch to Order Status action",
+                  "from_entity": "action_21633_step_733_entity_28944"
+                }
+              ]
+            },
+            "next_step": "step_478"
+          },
+          {
+            "step": "step_161",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Set variable photo_finish"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "variable": "step_912"
+                  },
+                  "skill_variable": "photo_finish"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_161",
+            "condition": {
+              "neq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Switch to Order Status action",
+                  "from_entity": "action_21633_step_912_entity_11605"
+                }
+              ]
+            },
+            "next_step": "step_658"
+          },
+          {
+            "step": "step_323",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Switching to Order Status action after collecting photo size information ..."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action",
+              "invoke_action": {
+                "action": "action_20212",
+                "parameters": null,
+                "result_variable": "step_323_result_1"
+              }
+            },
+            "variable": "step_323",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Switch to Order Status action",
+                  "from_entity": "action_21633_step_912_entity_11605"
+                }
+              ]
+            },
+            "next_step": "step_885"
+          },
+          {
+            "step": "step_478",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Set session variable photo_size"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "context": {
+              "variables": [
+                {
+                  "value": {
+                    "variable": "step_733"
+                  },
+                  "skill_variable": "photo_size"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_478",
+            "next_step": "step_912"
+          },
+          {
+            "step": "step_658",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Thank you for your inquiry. One print of "
+                          },
+                          {
+                            "variable": "step_733"
+                          },
+                          {
+                            "scalar": " photo in "
+                          },
+                          {
+                            "variable": "step_912"
+                          },
+                          {
+                            "scalar": " finish is $0.99. ("
+                          },
+                          {
+                            "skill_variable": "photo_size"
+                          },
+                          {
+                            "scalar": ", "
+                          },
+                          {
+                            "skill_variable": "photo_finish"
+                          },
+                          {
+                            "scalar": ")"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_658",
+            "condition": {
+              "and": [
+                {
+                  "exists": {
+                    "variable": "step_733"
+                  }
+                },
+                {
+                  "exists": {
+                    "variable": "step_912"
+                  }
+                }
+              ]
+            },
+            "next_step": "step_831"
+          },
+          {
+            "step": "step_733",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "What size of printing would you like? Choices include: 4 by 6 inch, 6 by 8 inch, 8 by 8 inch, and 8 by 10 inch."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "8 by 10 inch",
+                      "value": {
+                        "input": {
+                          "text": "8 by 10 inch"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Switch to Order Status action",
+                      "value": {
+                        "input": {
+                          "text": "Switch to Order Status action"
+                        }
+                      }
+                    },
+                    {
+                      "label": "6 by 8 inch",
+                      "value": {
+                        "input": {
+                          "text": "6 by 8 inch"
+                        }
+                      }
+                    },
+                    {
+                      "label": "8 by 8 inch",
+                      "value": {
+                        "input": {
+                          "text": "8 by 8 inch"
+                        }
+                      }
+                    },
+                    {
+                      "label": "4 by 6 inch",
+                      "value": {
+                        "input": {
+                          "text": "4 by 6 inch"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "context": {
+              "variables": []
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm afraid I don't understand. Let me see if I can help another way."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "end_action"
+                }
+              }
+            ],
+            "question": {
+              "entity": "action_21633_step_733_entity_28944",
+              "max_tries": 2,
+              "only_populate_when_prompted": false
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_733",
+            "next_step": "step_145"
+          },
+          {
+            "step": "step_831",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Both photo size and photo finish are required for price inquiry"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_733"
+                }
+              ]
+            },
+            "variable": "step_831",
+            "condition": {
+              "or": [
+                {
+                  "not": {
+                    "exists": {
+                      "variable": "step_733"
+                    }
+                  }
+                },
+                {
+                  "not": {
+                    "exists": {
+                      "variable": "step_912"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "step": "step_885",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Back to your original inquiry.\nWhat photo finish do you want? Choices include glossy, matte, or card stock?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "matte",
+                      "value": {
+                        "input": {
+                          "text": "matte"
+                        }
+                      }
+                    },
+                    {
+                      "label": "glossy",
+                      "value": {
+                        "input": {
+                          "text": "glossy"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm afraid I don't understand. Let me see if I can help another way."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "end_action"
+                }
+              }
+            ],
+            "question": {
+              "entity": "action_21633_step_885_entity_32156",
+              "max_tries": 3,
+              "only_populate_when_prompted": false
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_885",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Switch to Order Status action",
+                  "from_entity": "action_21633_step_912_entity_11605"
+                }
+              ]
+            },
+            "next_step": "step_161"
+          },
+          {
+            "step": "step_912",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "What photo finish do you want? Choices include glossy, matte, or card stock?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "matte",
+                      "value": {
+                        "input": {
+                          "text": "matte"
+                        }
+                      }
+                    },
+                    {
+                      "label": "glossy",
+                      "value": {
+                        "input": {
+                          "text": "glossy"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Switch to Order Status action",
+                      "value": {
+                        "input": {
+                          "text": "Switch to Order Status action"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm afraid I don't understand. Let me see if I can help another way."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "end_action"
+                }
+              }
+            ],
+            "question": {
+              "entity": "action_21633_step_912_entity_11605",
+              "max_tries": 2,
+              "only_populate_when_prompted": false
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_912",
+            "next_step": "step_323"
+          }
+        ],
+        "title": "photos price inquiry",
+        "action": "action_21633",
+        "handlers": [],
+        "condition": {
+          "intent": "action_21633_intent_12210"
+        },
+        "variables": [
+          {
+            "title": "Switch to Order Status action ...",
+            "variable": "step_145",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_145_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Set variable photo_finish",
+            "variable": "step_161",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_188_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Switching to Order Status action after collecting photo size inf",
+            "variable": "step_323",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_323_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Set session variable photo_size",
+            "variable": "step_478",
+            "data_type": "any"
+          },
+          {
+            "title": "Thank you for your inquiry. One print of {variable} photo in {va",
+            "variable": "step_658",
+            "data_type": "any"
+          },
+          {
+            "title": "What size of printing would you like? Choices include: 4 by 6 in",
+            "variable": "step_733",
+            "data_type": "any"
+          },
+          {
+            "title": "Both photo size and photo finish are required for price inquiry",
+            "variable": "step_831",
+            "data_type": "any"
+          },
+          {
+            "title": "Back to your original inquiry. What photo finish do you want? Ch",
+            "variable": "step_885",
+            "data_type": "any"
+          },
+          {
+            "title": "What photo finish do you want? Choices include glossy, matte, or",
+            "variable": "step_912",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "anything_else",
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_395",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Checking ..."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "search",
+              "response": {
+                "query": "",
+                "query_type": "natural_language"
+              }
+            },
+            "variable": "step_395"
+          }
+        ],
+        "title": "Search for medicine information",
+        "action": "action_30228",
+        "handlers": [],
+        "condition": {
+          "intent": "action_30228_intent_44264"
+        },
+        "variables": [
+          {
+            "title": "Checking ...",
+            "variable": "step_395",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_20212",
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I am afraid I do not understand what you are asking, please re-phrase your question."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_001"
+          }
+        ],
+        "title": "Retry when no action matches",
+        "action": "anything_else",
+        "handlers": [],
+        "condition": {
+          "expression": "anything_else"
+        },
+        "variables": [
+          {
+            "variable": "step_001",
+            "data_type": "any"
+          }
+        ],
+        "disambiguation_opt_out": true
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Welcome, how can I assist you?"
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_001"
+          }
+        ],
+        "title": "Greet customer",
+        "action": "welcome",
+        "handlers": [],
+        "condition": {
+          "expression": "welcome"
+        },
+        "variables": [
+          {
+            "variable": "step_001",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_30228",
+        "disambiguation_opt_out": true
+      }
+    ],
+    "intents": [
+      {
+        "intent": "action_20212_intent_4874",
+        "examples": [
+          {
+            "text": "are my orders ready?"
+          },
+          {
+            "text": "Are my photos ready?"
+          },
+          {
+            "text": "Are my pictures ready?"
+          },
+          {
+            "text": "Can I have an estimate amount of time until I can pick up my photos"
+          },
+          {
+            "text": "Can you provide status update"
+          },
+          {
+            "text": "check order status"
+          },
+          {
+            "text": "Check the status of my orders"
+          },
+          {
+            "text": "Check the status of my pictures"
+          },
+          {
+            "text": "How much longer until I can pick up my pictures"
+          },
+          {
+            "text": "I'm calling about the my order status"
+          },
+          {
+            "text": "I would like to find out the status of my vacation pictures"
+          },
+          {
+            "text": "need a status update"
+          },
+          {
+            "text": "photo status"
+          }
+        ]
+      },
+      {
+        "intent": "action_21633_intent_12210",
+        "examples": [
+          {
+            "text": "cost of photos"
+          },
+          {
+            "text": "how much does a 4 by 6 photo cost"
+          },
+          {
+            "text": "how much does a four by six photo cost"
+          },
+          {
+            "text": "how much does an 8 by 6 print cost"
+          },
+          {
+            "text": "how much does it cost to print photos"
+          },
+          {
+            "text": "how much do photos cost?"
+          },
+          {
+            "text": "how much do pictures cost?"
+          },
+          {
+            "text": "how much to print photos"
+          },
+          {
+            "text": "i want to print photos"
+          },
+          {
+            "text": "like to have the photo printing price"
+          },
+          {
+            "text": "order photos"
+          },
+          {
+            "text": "what is the price for 4 by 6 glossy"
+          }
+        ]
+      },
+      {
+        "intent": "action_30228_intent_44264",
+        "examples": [
+          {
+            "text": "What drugs interact with Tylenol?"
+          },
+          {
+            "text": "what is Aspirin dosage?"
+          },
+          {
+            "text": "what is Aspirin side effect?"
+          },
+          {
+            "text": "what is Mortrin side effect?"
+          },
+          {
+            "text": "what is Motrin dosage?"
+          },
+          {
+            "text": "what is Tylenol dosage?"
+          },
+          {
+            "text": "what is Tylenol side effect?"
+          },
+          {
+            "text": "What substances interact with Aspirin?"
+          }
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "entity": "action_21633_step_733_entity_28944",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "4 by 6 inch",
+            "synonyms": [
+              "4 by 6",
+              "4 x 6",
+              "4x6",
+              "6 by 4",
+              "6 x 4",
+              "6x4",
+              "four by six",
+              "four inch by six inch",
+              "six by four"
+            ]
+          },
+          {
+            "type": "synonyms",
+            "value": "6 by 8 inch",
+            "synonyms": [
+              "6 by 8",
+              "6 x 8",
+              "6x8",
+              "8 by 6",
+              "8 x 6",
+              "8x6",
+              "eight by six",
+              "six by eight",
+              "six inch by eight inch"
+            ]
+          },
+          {
+            "type": "synonyms",
+            "value": "8 by 10 inch",
+            "synonyms": [
+              "10 by 8",
+              "10 x 8",
+              "10x8",
+              "8 by 10",
+              "8 x 10",
+              "8x10",
+              "eight by ten",
+              "eight inch by ten inch",
+              "ten by eight"
+            ]
+          },
+          {
+            "type": "synonyms",
+            "value": "8 by 8 inch",
+            "synonyms": [
+              "8 by 8",
+              "8 x 8",
+              "8x8",
+              "eight by eight",
+              "eight inch by eight inch"
+            ]
+          },
+          {
+            "type": "synonyms",
+            "value": "Switch to Order Status action",
+            "synonyms": [
+              "changed mind",
+              "change mind",
+              "something else"
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "action_21633_step_885_entity_32156",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "glossy",
+            "synonyms": [
+              "bright",
+              "gloss",
+              "shiny"
+            ]
+          },
+          {
+            "type": "synonyms",
+            "value": "matte",
+            "synonyms": [
+              "flat",
+              "mat",
+              "mate",
+              "matt",
+              "plain",
+              "regular"
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "action_21633_step_912_entity_11605",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "glossy",
+            "synonyms": [
+              "bright",
+              "gloss",
+              "shiny"
+            ]
+          },
+          {
+            "type": "synonyms",
+            "value": "matte",
+            "synonyms": [
+              "flat",
+              "mat",
+              "mate",
+              "matt",
+              "plain",
+              "regular"
+            ]
+          },
+          {
+            "type": "synonyms",
+            "value": "Switch to Order Status action",
+            "synonyms": [
+              "changed mind",
+              "change mind",
+              "something else"
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "sys-number",
+        "values": []
+      }
+    ],
+    "metadata": {
+      "api_version": {
+        "major_version": "v2",
+        "minor_version": "2018-11-08"
+      }
+    },
+    "variables": [
+      {
+        "title": "photo_finish",
+        "variable": "photo_finish",
+        "data_type": "any",
+        "description": ""
+      },
+      {
+        "title": "photo_size",
+        "variable": "photo_size",
+        "data_type": "any",
+        "description": ""
+      }
+    ],
+    "counterexamples": [],
+    "system_settings": {
+      "off_topic": {
+        "enabled": true
+      },
+      "disambiguation": {
+        "prompt": "Did you mean:",
+        "enabled": true,
+        "randomize": true,
+        "max_suggestions": 5,
+        "suggestion_text_policy": "title",
+        "none_of_the_above_prompt": "None of the above"
+      },
+      "intent_classification": {
+        "training_backend_version": "v2"
+      },
+      "spelling_auto_correct": true
+    },
+    "learning_opt_out": false
+  },
+  "description": "",
+  "workspace_id": "a7277b82-2bd6-49ef-973a-fb150b593ec2",
+  "dialog_settings": {
+    "actions": true
+  }
+}
