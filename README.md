@@ -22,7 +22,7 @@ A single action is not designed to stretch across multiple subjects or intents. 
 
 ## More Features is Coming
 
-`Actions skill` is relatively new in `Watson Assistant`. It offers many great advantages over the traditional `dialog kill`.
+`Actions skill` is relatively new in `Watson Assistant`. It offers many great advantages over the traditional `dialog skill` and presents future direction of Watson Assistant.
 - intuitive and non-technical-users friendly
 - simplicity
 - seamless switching between actions
@@ -31,7 +31,7 @@ A single action is not designed to stretch across multiple subjects or intents. 
 Some of features are still pending at the time of this writing.
 - skill webhook
 - pattern entity
-- refer action from dialog skill
+- refer action within dialog skill
 
 
 ## Use Case
@@ -340,7 +340,11 @@ You run a test case to end both new and original conversations in this section. 
 
     !["watson-discovery"](docs/images/assistant-07.png)
 
-1. In `Step 2` of `photos price inquiry` action, you can find detail information of this subject switching configuration. `Upon return` property is set to `End current action`.
+1. In `Step 2` of `photos price inquiry` action, you can find detail information of this subject switching configuration. 
+
+    - `And then` is set to `Go to another action`.
+    - `Goes to action` is set to `photo status`.
+    - `Upon return` property is set to `End current action`.
 
     !["watson-discovery"](docs/images/assistant-08.png)
 
@@ -395,7 +399,10 @@ You run a test case to resume the original conversations in this section.
 
     !["watson-discovery"](docs/images/assistant-09.png)
 
-1. In `Step 5` of `photos price inquiry` action, you can find detail information of this subject switching configuration. `Upon return` property is set to `Continue`.
+1. In `Step 5` of `photos price inquiry` action, you can find detail information of this subject switching configuration. 
+    - `And then` is set to `Go to another action`.
+    - `Goes to action` is set to `photo status`.
+    - `Upon return` property is set to `Continue`.
 
     !["watson-discovery"](docs/images/assistant-10.png)
 
