@@ -22,7 +22,7 @@ A single action is not designed to stretch across multiple subjects or intents. 
 
 ## More Features is Coming
 
-`Actions skill` is relatively new in `Watson Assistant`. It offers many great advantages over the traditional `dialog skill` and presents future direction of Watson Assistant.
+`Actions skill` is relatively new in `Watson Assistant`. It offers many great advantages over the traditional `dialog skill` and likely presents future direction of Watson Assistant.
 - intuitive and non-technical-users friendly
 - simplicity
 - seamless switching between actions
